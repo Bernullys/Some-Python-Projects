@@ -2,30 +2,33 @@ import sys
 from PIL import Image, ImageOps, ImageDraw, ImageFont
 
 #open the background image
-background_image = Image.open(sys.argv[1])
+#background_image = Image.open(sys.argv[1])
 
-#open overlay image
-front_image = Image.open(sys.argv[2])
+try:
+    background_image = Image.open(f"bank_of_images/{sys.argv[1]}")
+    rgba_background_image = background_image.convert("RGBA")
+except FileNotFoundError:
+    sys.exit("The specified image does not exist in the folder bank_of_images")
 
-# Resize the overlay image to the desired size
-new_size = (150, 150)
-front_image = front_image.resize(new_size)
+first_condition = input("Do you want to fix default images to your background image? ")
+if first_condition == "yes" or first_condition == "y":
+    rigth_arrow = Image.open("assets_images/flechaderecha.png")
+    left_arrow = Image.open("assets_images/flechaizquierda.png")
+    logo = Image.open("assets_images/logoinstelecsa.png")
 
-# Convert the overlay image to RGBA mode
-# This is to have a transparency
+    arrows_size = (150, 150)
+    logo_size = (200, 80)
+    rz_rigth_arrow = rigth_arrow.resize(arrows_size)
+    rz_left_arrow = left_arrow.resize(arrows_size)
+    rz_logo = logo.resize(logo_size)
 
-front_image = front_image.convert("RGBA")
+    rgba_rigth_arrow = rz_rigth_arrow.convert("RGBA")
+    rgba_left_arrow = rz_left_arrow.convert("RGBA")
+    rgba_logo = rz_logo.convert("RGBA")
 
-#defining position on witch front_image is goint to be
-position_x = int(sys.argv[3])
-position_y = int(sys.argv[4])
-
-# Create a new image with the size of the background image
-# This is to have a transparency
-overlapped_image = Image.new('RGBA', background_image.size)
-
-# Paste the background image onto the new image
-overlapped_image.paste(background_image, (0, 0))
+    rgba_background_image.paste(rgba_rigth_arrow, (0, 225))
+    rgba_background_image.paste(rgba_left_arrow, (949, 225))
+    rgba_background_image.paste(rgba_logo, (874, 10))
 
 # Calculate the position to paste the overlay image at the center
 # position = (
@@ -34,22 +37,22 @@ overlapped_image.paste(background_image, (0, 0))
 # )
 
 # Paste the overlay image onto the new image at the calculated position
-overlapped_image.paste(front_image, (position_x, position_y), mask=front_image)
+# overlapped_image.paste(front_image, (position_x, position_y), mask=front_image)
 
-# Create a drawing context
-draw = ImageDraw.Draw(overlapped_image)
+# # Create a drawing context
+# draw = ImageDraw.Draw(overlapped_image)
 
-# Specify the font style ans size
-#font = ImageFont.truetype("arial.ttf", 30)
+# # Specify the font style ans size
+# #font = ImageFont.truetype("arial.ttf", 30)
 
-# Defined the text content, position and color
-text = "Hello Iddero HC3"
-text_position = (50, 50)
-text_color = (255, 255, 255)
+# # Defined the text content, position and color
+# text = "Hello Iddero HC3"
+# text_position = (50, 50)
+# text_color = (255, 255, 255)
 
-# Draw the text onto the image
-draw.text(text_position, text, fill = text_color)
+# # Draw the text onto the image
+# draw.text(text_position, text, fill = text_color)
 
 
 # Save the overlapped image
-overlapped_image.save(sys.argv[5])
+rgba_background_image.save(sys.argv[2])

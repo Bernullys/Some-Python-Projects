@@ -7,7 +7,7 @@ if len(sys.argv) != 5:
 else:
     try:
         bank_of_images_path = "bank_of_images/"
-        input_image_path = os.path.join(bank_of_images_path, sys.argv[1])
+        input_image_path = os.path.join(bank_of_images_path, sys.argv[1]) #try joining with fstrings
         image_under_change = Image.open(input_image_path)
     except FileNotFoundError:
         sys.exit("The specified image does not exist in bank_of_images")
