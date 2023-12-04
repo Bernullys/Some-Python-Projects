@@ -15,7 +15,8 @@ if first_condition == "yes" or first_condition == "y":
     rigth_arrow = Image.open("assets_images/flechaizquierda.png")
     left_arrow = Image.open("assets_images/flechaderecha.png")
     logo = Image.open("assets_images/logoinstelecsa.png")
-    background_button = Image.open("assets_images/orange_button.png")
+    background_button1 = Image.open("assets_images/orange_button.png")
+    background_button2 = Image.open("assets_images/orange_button.png")
 
     arrows_size = (150, 100)
     logo_size = (200, 80)
@@ -23,17 +24,21 @@ if first_condition == "yes" or first_condition == "y":
     rz_rigth_arrow = rigth_arrow.resize(arrows_size)
     rz_left_arrow = left_arrow.resize(arrows_size)
     rz_logo = logo.resize(logo_size)
-    rz_background_button = background_button.resize(background_button_size)
+    rz_background_button1 = background_button1.resize(background_button_size)
+    rz_background_button2 = background_button1.resize(background_button_size)
 
     rgba_rigth_arrow = rz_rigth_arrow.convert("RGBA")
     rgba_left_arrow = rz_left_arrow.convert("RGBA")
     rgba_logo = rz_logo.convert("RGBA")
-    rgba_background_button = rz_background_button.convert("RGBA")
+    rgba_background_button1 = rz_background_button1.convert("RGBA")
+    rgba_background_button2 = rz_background_button2.convert("RGBA")
 
     rgba_background_image.paste(rgba_rigth_arrow, (0, 250))
     rgba_background_image.paste(rgba_left_arrow, (874, 250))
     rgba_background_image.paste(rgba_logo, (814, 80))
-    rgba_background_image.paste(rgba_background_button, (362, 225))
+    rgba_background_image.paste(rgba_background_button1, (362, 100))
+    rgba_background_image.paste(rgba_background_button2, (362, 300))
+
 
 # Calculate the position to paste the overlay image at the center
 # position = (
@@ -64,15 +69,22 @@ if first_condition == "yes" or first_condition == "y":
 
 
 #Create a drawing context
-draw = ImageDraw.Draw(rgba_background_image)
+draw1 = ImageDraw.Draw(rgba_background_image)
+draw2 = ImageDraw.Draw(rgba_background_image)
+
 # # Specify the font style ans size
 font = ImageFont.truetype("DejaVuSans.ttf", 34)
 # # Defined the text content, position and color
-text = "Verticales Torre A"
-text_position = (362, 278)
+text1 = "  1° Piso Torre A"
+text2 = "  1° Piso Torre B"
+text_position1 = (362, 158)
+text_position2 = (362, 358)
+
 text_color = (255, 0, 0)
 # # Draw the text onto the image
-draw.text(text_position, text, font = font, fill = text_color)
+draw1.text(text_position1, text1, font = font, fill = text_color)
+draw2.text(text_position2, text2, font = font, fill = text_color)
+
 
 
 # Save the overlapped image
