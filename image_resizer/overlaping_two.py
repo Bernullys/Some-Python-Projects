@@ -75,15 +75,17 @@ draw2 = ImageDraw.Draw(rgba_background_image)
 # # Specify the font style ans size
 font = ImageFont.truetype("DejaVuSans.ttf", 34)
 # # Defined the text content, position and color
-text1 = "  1° Piso Torre A"
-text2 = "  1° Piso Torre B"
+text1 = " Emplazamiento"
+text2 = " Emplazamiento"
 text_position1 = (362, 158)
 text_position2 = (362, 358)
 
-text_color = (255, 0, 0)
+text_color = (0, 0, 0)
+text_color2 = (255, 0, 0)
+
 # # Draw the text onto the image
 draw1.text(text_position1, text1, font = font, fill = text_color)
-draw2.text(text_position2, text2, font = font, fill = text_color)
+draw2.text(text_position2, text2, font = font, fill = text_color2)
 
 
 

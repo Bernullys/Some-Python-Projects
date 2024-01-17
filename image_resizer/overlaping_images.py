@@ -68,9 +68,9 @@ draw = ImageDraw.Draw(rgba_background_image)
 # # Specify the font style ans size
 font = ImageFont.truetype("DejaVuSans.ttf", 34)
 # # Defined the text content, position and color
-text = "Verticales Torre A"
+text = "        1° Piso"
 text_position = (362, 278)
-text_color = (255, 0, 0)
+text_color = (100, 0, 100)
 # # Draw the text onto the image
 draw.text(text_position, text, font = font, fill = text_color)
 
